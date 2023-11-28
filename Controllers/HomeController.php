@@ -25,21 +25,41 @@ class HomeController extends Controller
 
     public function create()
     {
+        echo View("create");
 
     }
 
     public function store()
     {
+        User::create([
+            "name" => $_POST['name'],
+            "email" => $_POST['email'],
+        ]);
+        header("Location:/php_mvc/");
 
     }
 
     public function edit()
     {
+        $id = $_GET['id'];
+        $user = User::find($id);
+        echo View("edit", $user);
 
     }
 
     public function update()
     {
+        $id = $_GET['id'];
+        $user = User::find($id);
+
+        $result = $user->update([
+            'name' => $_POST['name'],
+            'email' => $_POST['email'],
+
+        ]);
+        if ($result) {
+            header("Location:/php_mvc/");
+        }
 
     }
 

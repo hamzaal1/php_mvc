@@ -50,8 +50,7 @@ abstract class Model
         $updates = implode(', ', $updates);
         $query = "UPDATE " . static::$table . " SET $updates WHERE id = $id";
         self::$connection->exec($query);
-
-        echo 1;
+        return 1;
     }
 
     public static function get()
