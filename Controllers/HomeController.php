@@ -6,39 +6,49 @@ include './config/View.php';
 include './Models/Model.php';
 include './Models/User.php';
 use App\Controllers\Controller;
-USE App\Models\Users\User;
+use App\Models\Users\User;
 
 class HomeController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
         $users = User::get();
-        echo View("home",$users);
+        echo View("home", $users);
     }
 
-    public function show($id){
-
-    }
-
-    public function create(){
+    public function show()
+    {
 
     }
 
-    public function store(array $data){
+    public function create()
+    {
 
     }
 
-    public function edit($id){
+    public function store()
+    {
 
     }
 
-    public function update($id, array $data){
+    public function edit()
+    {
 
     }
 
-    public function destroy($id){
+    public function update()
+    {
 
+    }
+
+    public function destroy()
+    {
+        $id = $_GET['id'];
+        $user = User::find($id);
+        $user->delete();
+        header("Location:/php_mvc/");
     }
 
     // Additional common methods or properties can be added as needed

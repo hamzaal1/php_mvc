@@ -11,17 +11,17 @@ abstract class Controller
 
     abstract public function index();
 
-    abstract public function show($id);
+    abstract public function show();
 
     abstract public function create();
 
-    abstract public function store(array $data);
+    abstract public function store();
 
-    abstract public function edit($id);
+    abstract public function edit();
 
-    abstract public function update($id, array $data);
+    abstract public function update();
 
-    abstract public function destroy($id);
+    abstract public function destroy();
 
     // Additional common methods or properties can be added as needed
 }
