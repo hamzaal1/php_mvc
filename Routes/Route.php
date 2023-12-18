@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Routes;
-
+use App\Requests\Request;
 class Route
 {
     protected static $routes = [];
@@ -52,7 +52,8 @@ class Route
             include($filePath);
             $controllerClass = "App\\Controllers\\" . $controller . '\\' . $controller;
             $instance = new $controllerClass();
-            $instance->{$action}();
+            $request = new Request();
+            $instance->{$action}($request);
         }
     }
 }

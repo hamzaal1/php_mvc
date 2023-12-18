@@ -19,11 +19,12 @@ abstract class Model
 
     protected static function initConnection()
     {
-
-        $connection = new Connection();
-        self::$connection = $connection->getConnection();
+        if (self::$connection === null) {
+            // Use the Singleton pattern to get the connection instance
+            $connection = Connection::getInstance();
+            self::$connection = $connection->getConnection();
+        }
     }
-
     public static function create(array $data)
     {
         self::initConnection();

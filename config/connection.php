@@ -1,13 +1,17 @@
 <?php
+
 namespace App\Database;
+
 use PDO;
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_DATABASE','php_mvc');
-define('DB_PASSWORD','');
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_DATABASE', 'php_mvc');
+define('DB_PASSWORD', '');
 
 class Connection
 {
+    private static $instance;
     private $host;
     private $database;
     private $username;
@@ -15,14 +19,22 @@ class Connection
 
     protected $connection;
 
-    public function __construct()
+    private function __construct()
     {
         $this->host = DB_HOST;
         $this->database = DB_DATABASE;
         $this->username = DB_USER;
         $this->password = DB_PASSWORD;
-
         $this->connect();
+    }
+
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
     private function connect()
@@ -30,7 +42,7 @@ class Connection
         try {
             $this->connection = new PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
     }

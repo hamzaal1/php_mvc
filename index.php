@@ -1,5 +1,6 @@
 <?php
 include('./Routes/Route.php');
+
 USE App\Routes\Route;
 
 
@@ -11,4 +12,3 @@ Route::get("/php_mvc/create/user/",'HomeController','create');
 Route::post("/php_mvc/store/user/",'HomeController','store');
 
 ?>
-
